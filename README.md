@@ -7,7 +7,7 @@ Endpoints
 ---
 
 ## GET /aed/&lt;lat&gt;/&lt;lon&gt;/
-Returns result of the nearest AED to lat lon in the form of
+Returns result of the nearest AED to lat lon in the form of, empty JSON otherwise
 ```
 {
   "_id": {
@@ -53,3 +53,6 @@ Alerts all nearby smartwatches with address of incident and nearby AED
 
 ## POST /update/&lt;lat&gt;/&lt;lon&gt;/uid
 Updates position of a given smartwatch
+
+## GET /poll/&lt;uid&gt;/
+For a given uid, return the current user's alert, empty JSON if none found

@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 MAX_DISTANCE = 250 # max distance running for 3 minutes to and fro'
 
+alerts = []
+
 search_dict = {
   "loc": {
     "$near": {
@@ -85,16 +87,23 @@ def post_report(lat, lon, uid):
 
     return '{}'
 
-def send_alert(user, aed, addr):
-    return
+@app.route('/poll/<user>/', methods=['GET'])
+def poll_alert(user):
+    if user in user_alerts:
+        return jsonify(alerts[user_alerts[user]])
+    return jsonify({})
+
+def set_alert(user, index):
+    user_alerts[user] = index
 
 def alert_nearest(lat, lon, aed, addr, distance=200):
     """ gets nearest users to lat lon pair and set distance """
     search = copy.deepcopy(search_dict)
     search["loc"]["$near"]["$geometry"]["coordinates"] = [lon, lat]
     curs = db.watches.find(search)
+    alerts += {"aed":aed, "addr":addr}
     for user in curs:
-        send_alert(user, aed, addr)
+        set_alert(user, len(alerts) - 1) # race condition much?
 
 
 
