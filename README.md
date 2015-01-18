@@ -7,7 +7,7 @@ Endpoints
 ---
 
 ## GET /aed/&lt;lat&gt;/&lt;lon&gt;/
-Returns result in the form of
+Returns result of the nearest AED to lat lon in the form of
 ```
 {
   "_id": {
@@ -48,6 +48,8 @@ Returns result in the form of
 }
 ```
 
-## POST &lt;lat&gt;/&lt;lon&gt;/
-/report/&lt;lat&gt;/&lt;lon&gt;/
-Returns 
+## POST /report/&lt;lat&gt;/&lt;lon&gt;/uid
+Alerts all nearby smartwatches with address of incident and nearby AED
+
+## POST /update/&lt;lat&gt;/&lt;lon&gt;/uid
+Updates position of a given smartwatch
