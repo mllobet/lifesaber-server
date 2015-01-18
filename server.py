@@ -98,6 +98,7 @@ def set_alert(user, index):
 
 def alert_nearest(lat, lon, aed, addr, distance=200):
     """ gets nearest users to lat lon pair and set distance """
+    global alerts
     search = copy.deepcopy(search_dict)
     search["loc"]["$near"]["$geometry"]["coordinates"] = [lon, lat]
     curs = db.watches.find(search)
