@@ -57,6 +57,7 @@ Updates position of a given smartwatch
 ## GET /poll/&lt;uid&gt;/
 For a given uid, return the current user's alert, empty JSON if none found
 Returns result in the following form:
+loc is in [long,lat] format
 ```
 {
     "aed": {
