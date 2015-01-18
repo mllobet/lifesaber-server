@@ -18,6 +18,7 @@ app = Flask(__name__)
 MAX_DISTANCE = 250 # max distance running for 3 minutes to and fro'
 
 alerts = []
+user_alerts = {}
 
 search_dict = {
   "loc": {
@@ -94,6 +95,7 @@ def poll_alert(user):
     return jsonify({})
 
 def set_alert(user, index):
+    global user_alerts
     user_alerts[user] = index
 
 def alert_nearest(lat, lon, aed, addr, distance=200):
